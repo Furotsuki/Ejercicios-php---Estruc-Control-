@@ -6,8 +6,7 @@
     </head>
     <body>
         <form method="post">
-            Digite el primer numero<input type="number" name="numero1" autofocus/><br>
-            Digite el primer segundo<input type="number" name="numero2" />
+            Digite el numero para la tabla de multiplicar<input type="number" name="numero1" autofocus/><br>
 
             <input name="enviar" type="submit" value="Enviar"/> 
 
@@ -17,24 +16,19 @@
         if (isset($_POST['enviar'])) {
 
             $numero1 = intval($_POST['numero1']);
-            $numero2 = intval($_POST['numero2']);
 
             echo '<fieldset><legend>Procedimientos</legend>';
-            if ($numero2 > $numero1) {
-                sacara_numero($numero1, $numero2);
-            }else{
-                echo 'El numero 2 debe ser mayor al numero 1';
-            }
+            sacara_numero($numero1);
             echo '</fieldset>';
         }
 
-        function sacara_numero($numero1, $numero2) {
+        function sacara_numero($numero1) {
             $conteo = [];
-            $mover = 0;
-            for ($i = $numero1; $i <= $numero2; $i++) {
-                $conteo[] = $i;
+            
+            for ($i = 1; $i <= 9; $i++) {
+                $conteo[] = $i * $numero1;
             }
-            echo 'Los numeros desde el inicial hasta el final son ';
+            echo 'Los numeros desde el inicial hasta el final son <br>';
             foreach ($conteo as $valor) {
 
                 echo $valor . '<br>';

@@ -13,25 +13,28 @@
         </form>
 
         <?php
+        echo '<fieldset><legend>Procedimientos</legend>';
+        sacara_numero();
+        echo '</fieldset>';
         if (isset($_POST['enviar'])) {
 
             $numero1 = intval($_POST['numero1']);
 
             echo '<fieldset><legend>Procedimientos</legend>';
-            sacara_numero($numero1);
+            //sacara_numero($numero1);
             echo '</fieldset>';
         }
 
-        function sacara_numero($numero1) {
+        function sacara_numero() {
             $conteo = [];
-            
-            for ($i = 1; $i <= 9; $i++) {
-                $conteo[] = $i * $numero1;
+            $dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+            for ($i = 1; $i <= 12; $i++) {
+                array_fill_keys($dias, $i);
             }
-            echo 'Los numeros desde el inicial hasta el final son <br>';
-            foreach ($conteo as $valor) {
+            echo 'Los numeros de la semana son <br>';
+            foreach ($dias as $llave => $valor) {
 
-                echo $valor . '<br>';
+                echo $llave+1 . ' = ' . $valor . '<br>';
             }
         }
         ?>

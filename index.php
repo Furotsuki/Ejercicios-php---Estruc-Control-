@@ -6,7 +6,8 @@
     </head>
     <body>
         <form method="post">
-            Digite un numero<input type="number" name="numero1" autofocus/>
+            Digite el primer numero<input type="number" name="numero1" autofocus/><br>
+            Digite el primer segundo<input type="number" name="numero2" />
 
             <input name="enviar" type="submit" value="Enviar"/> 
 
@@ -16,25 +17,27 @@
         if (isset($_POST['enviar'])) {
 
             $numero1 = intval($_POST['numero1']);
-            echo gettype($numero1);
+            $numero2 = intval($_POST['numero2']);
+
             echo '<fieldset><legend>Procedimientos</legend>';
-            sacara_numero($numero1);
+            if ($numero2 > $numero1) {
+                sacara_numero($numero1, $numero2);
+            }else{
+                echo 'El numero 2 debe ser mayor al numero 1';
+            }
             echo '</fieldset>';
         }
 
-        function sacara_numero($frase) {
-            $contar = 0;
-            for ($i = 1; $i <= $frase; $i++) {
-                if ($frase % $i == 0) {
-                    $contar++;
-                }
+        function sacara_numero($numero1, $numero2) {
+            $conteo = [];
+            $mover = 0;
+            for ($i = $numero1; $i <= $numero2; $i++) {
+                $conteo[] = $i;
             }
-            if ($contar > 2 or $contar < 2) {
-                echo 'El numero ' . $frase . ' no es primo';
-            } else {
-                if ($contar == 2) {
-                    echo 'El numero ' . $frase . ' es primo';
-                }
+            echo 'Los numeros desde el inicial hasta el final son ';
+            foreach ($conteo as $valor) {
+
+                echo $valor . '<br>';
             }
         }
         ?>
